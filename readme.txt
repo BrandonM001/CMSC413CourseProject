@@ -18,3 +18,9 @@ To Do list
     If it matches, they are taken to the password manager and all passwords from passwords.txt are decrypted and given to the webpage to be displayed.
     Passwords in passwords.txt always remain encrypted in the file.
   Nice to haves:
+
+Dependencies:
+  (pip,python3)
+  pip install Flask
+  pip install cryptocode
+  pip install flask-login
