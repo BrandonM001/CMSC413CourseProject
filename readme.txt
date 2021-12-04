@@ -24,3 +24,6 @@ Dependencies:
   pip install Flask
   pip install cryptocode
   pip install flask-login
+Sources(so far):
+  https://www.youtube.com/watch?v=zRwy8gtgJ1A
+  https://www.youtube.com/watch?v=addnlzdSQs4
