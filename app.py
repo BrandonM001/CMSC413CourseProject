@@ -9,27 +9,22 @@ masterPass = "_"
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     global masterPass
-    print(masterPass)
     error = None
-    if request.method == 'POST':
+    if request.method == 'POST' and request.form['button'] == 'Login':
+        print(masterPass)
         masterPass = request.form['password']
         print(masterPass)
-        if(checkPassRequirements(masterPass) != 1):
-            error = 'Password does not meet requirements. Please try again.'
-            render_template('login.html', error=error)
-        bool = authenticate(request.form['username'], request.form['password'])
-        #print(bool)
+        num = authenticate(request.form['username'], request.form['password'])
+        print(num)
         #if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-        if (bool) == -1:
+        if (num) == -1:
             error = 'Invalid Credentials. Please try again.'
         else:
-            return render_template('index.html', error=error)#redirect(url_for('login'))
+            return redirect(url_for('login'))
     return render_template('login.html', error=error)
 
 @app.route('/')
 def index():
-    global masterPass
-    masterPass = "homePage"
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
