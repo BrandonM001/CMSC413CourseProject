@@ -13,7 +13,8 @@
           request.form.username }}">
          <input type="password" placeholder="Password" name="password" value="{{
           request.form.password }}">
-        <input class="btn btn-default" type="submit" value="Login">
+        <input class="btn btn-default" type="submit" name="button" value="Login">
+        <input class="btn btn-default" type="submit" name="button" value="Register">
       </form>
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
