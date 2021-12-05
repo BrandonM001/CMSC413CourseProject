@@ -93,7 +93,7 @@ def encryptPass(cipher, masterPass):
 def addToFile(website, username, password, masterPass):
     file = open("passwords.txt", "a")
     cipher = encryptPass(password, masterPass)
-    file.write(website + "," + username + "," + cipher + ",\n")
+    file.write(website + "," + username + "," + cipher + "\n")
     file.close()
     return 1
 
@@ -113,7 +113,9 @@ def readAllFromFile(masterPass):
     file = open("passwords.txt", "r")
     lines = file.readlines()
     entries = ""
+    #print(lines)
     for line in lines[1:]:
+        print("line: " + line)
         line = line.strip()
         data = line.split(",")
         data[2] = decryptPass(data[2], masterPass)
@@ -131,15 +133,15 @@ def findFromFile(username):
     return 0
 
 def main():
-    #setupFile("useer", "passwword")
+    #setupFile("useer", "passs")
     #print("auth")
-    #print(authenticate("useer", "passwword"))
+    #print(authenticate("useer", "passs"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
     #print(decryptPass(cipher, "plants"))
-    addToFile("Walmart", "bob", "passz", "pass")
-    addToFile("Target", "Tom", "reallycool", "paefs")
-    print(readAllFromFile("pass"))
+    #addToFile("Walmart", "bob", "passz", "passs")
+    #addToFile("Target", "Tom", "reallycool", "passs")
+    print(readAllFromFile("passs"))
     #print(checkPassRequirements("kek49282d4321"))
 #J sends seach entry of password file
 
