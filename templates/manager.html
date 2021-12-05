@@ -5,20 +5,21 @@
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 75%;
 }
 
 td, th {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
 </style>
-<title> Passwords are as follows: </title>
+<title class = "passwordList"> Passwords are as follows: </title>
 <table> <tr>
   <th> Website </th> <th> Username </th> <th> Password </th> </tr>
 {% for item in data %}
