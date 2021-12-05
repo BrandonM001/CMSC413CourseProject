@@ -39,8 +39,31 @@ def checkPassRequirements(password):
         return "length < 8"
     if(not((re.search(".*[0-9].*", password)) and (re.search(".*[a-zA-Z]+.*", password)))):
         return "Need # and letter"
-    #if(not(re.search("(.)\\1{3,}", password))):
-    #    return "No consecutive letters"
+    if(not(hasConsecLetters(password))):
+        return "No consecutive letters"
+
+    return 1
+
+def hasConsecLetters(word):
+    word = word.lower().strip()
+    consecLetters = 0
+    seqLetters = 0
+    preqLetters = 0
+    for i in range(len(word) - 1):
+        #print(word[i])
+        if(word[i] == word[i+1]):
+            consecLetters +=1
+        elif chr(ord(word[i])+1) == word[i+1]:
+            seqLetters +=1
+        elif chr(ord(word[i])-1) == word[i+1]:
+            preqLetters +=1
+        else:
+            consecLetters = 0
+            seqLetters = 0
+            preqLetters = 0
+        if(consecLetters == 3 or seqLetters == 3 or preqLetters == 3):
+            return 0
+
     return 1
 
 def decryptPass(password, masterPass):
@@ -52,7 +75,7 @@ def encryptPass(cipher, masterPass):
 def addToFile(website, username, password, masterPass):
     file = open("passwords.txt", "a")
     cipher = encryptPass(password, masterPass)
-    file.write(website + "," + username + "," + cipher + "\n")
+    file.write(website + "," + username + "," + cipher + ",\n")
     file.close()
     return 1
 
@@ -69,10 +92,15 @@ def ReplaceInFile(username, password):
 
 def readAllFromFile(masterPass):
     #decrypt things here
-    file = open("passwords.txt", "w")
-    lines = file.readLines()
+    file = open("passwords.txt", "r")
+    lines = file.readlines()
     entries = ""
-    #for line in lines[1:]:
+    for line in lines[1:]:
+        line = line.strip()
+        data = line.split(",")
+        data[2] = decryptPass(data[2], masterPass)
+        entries += data[0] + "," + data[1] + "," + str(data[2]) + ",\n"
+    print(entries)
     return 0
 
 def findFromFile(username):
@@ -85,15 +113,15 @@ def findFromFile(username):
     return 0
 
 def main():
-    setupFile("user", "pass")
-    print(authenticate("user", "pass"))
+    #setupFile("user", "pass")
+    #print(authenticate("user", "pass"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
     #print(decryptPass(cipher, "plants"))
-    wipeAllPasswords()
-    addToFile("Walmart", "bob", "passz", "pass")
-    addToFile("Target", "bob", "passz", "pass")
-
+    #addToFile("Walmart", "bob", "passz", "pass")
+    #addToFile("Target", "Tom", "reallycool", "paefs")
+    #readAllFromFile("pass")
+    print(checkPassRequirements("kek49282d4321"))
 #J sends seach entry of password file
 
 if __name__ == "__main__":
