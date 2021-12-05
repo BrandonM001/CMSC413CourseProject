@@ -21,6 +21,8 @@ def login():
             error = 'Invalid Credentials. Please try again.'
         else:
             return redirect(url_for('login'))
+    elif request.method == 'POST' and request.form['button'] == 'Register':
+        setupFile(request.form['username'],request.form['password'])
     return render_template('login.html', error=error)
 
 @app.route('/')
