@@ -27,7 +27,7 @@ def login():
         if (num) == -1:
             error = 'Invalid Credentials. Please try again.'
         else:
-            return redirect(url_for('login'))
+            return redirect(url_for('manager'))
     elif request.method == 'POST' and request.form['button'] == 'Register':
         username = request.form['username']
         masterPass = request.form['password']
@@ -38,6 +38,34 @@ def login():
         setupFile(username, masterPass)
         return redirect(url_for('login'))
     return render_template('login.html', error=error)
+
+@app.route('/manager')
+def manager():
+    global masterPass
+    error = None
+    data=[]
+    lines = readAllFromFile(masterPass).split("\n")
+    for line in lines:
+        items = line.split(",")
+        i = 0
+        dict = {}
+        for item in items:
+            print(item)
+            if item == '':
+                pass
+            else:
+
+                if i==0:
+                    dict.update({"website":item})
+                elif i==1:
+                    dict.update({"username":item})
+                elif i==2:
+                    dict.update({"password":item})
+                i += 1
+        data.append(dict)
+
+
+    return render_template('manager.html',error=error,data=data)
 
 @app.route('/')
 def index():
