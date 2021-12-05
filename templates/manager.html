@@ -25,4 +25,13 @@ tr:nth-child(even) {
 {% for item in data %}
   <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td> </tr>
 {% endfor %}
+ <form action="" method="post">
+  <input type="text" placeholder="Website" name="website" value="{{
+    request.form.website }}">
+  <input type="text" placeholder="Username" name="username" value="{{
+    request.form.username }}">
+   <input type="password" placeholder="Password" name="password" value="{{
+    request.form.password }}">
+  <input class="btn btn-default" type="submit" name="button" value="Add">
+</form>
 {% endblock %}
