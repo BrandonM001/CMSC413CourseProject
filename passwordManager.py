@@ -119,7 +119,7 @@ def readAllFromFile(masterPass):
         line = line.strip()
         data = line.split(",")
         data[2] = decryptPass(data[2], masterPass)
-        entries += data[0] + "," + data[1] + "," + str(data[2]) + ",\n"
+        entries += data[0] + "," + data[1] + "," + str(data[2]) + "\n"
     #print(entries)
     return entries
 
