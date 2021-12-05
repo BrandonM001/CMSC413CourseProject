@@ -43,7 +43,7 @@ def login():
         return redirect(url_for('login'))
     return render_template('login.html', error=error)
 
-@app.route('/manager')
+@app.route('/manager', methods=['GET', 'POST'])
 def manager():
     global loggedIn
     if(not loggedIn):
