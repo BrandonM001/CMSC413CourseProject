@@ -6,6 +6,8 @@ import random
 import re
 import cryptocode
 
+masterPass = ""
+
 def setupFile(user, password):
     #set up passwords.txt and put hashes
     file = open("passwords.txt", "w")
@@ -15,6 +17,7 @@ def setupFile(user, password):
     hashPass = str(hash(saltedPass))
     saltedHashPass = hashPass + str(salt)
     line = str(user) + "," + str(saltedHashPass) +"\n"
+    masterPass = password
     file.write(line)
     file.close()
 
@@ -30,6 +33,7 @@ def authenticate(username, password):
     hashPass = str(hash(saltedPass))
     saltedHashPass = hashPass + str(salt)
     if((creds[0] == username) and (grabPass == saltedHashPass)):
+        masterPass = password
         return 1
     return -1
 
@@ -112,8 +116,8 @@ def findFromFile(username):
             return creds[0]
     return 0
 
-def main():
-    #setupFile("user", "pass")
+def main(user, password):
+    setupFile(user, password)
     #print(authenticate("user", "pass"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
