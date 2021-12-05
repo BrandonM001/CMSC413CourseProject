@@ -5,12 +5,15 @@ from passlib.hash import pbkdf2_sha256
 app = Flask(__name__)
 username = "_"
 masterPass = "_"
+loggedIn = False
 
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     global username
     global masterPass
+    global loggedIn
+    loggedIn = False
     error = None
     if request.method == 'POST' and request.form['button'] == 'Login':
         username = request.form['username']
@@ -27,6 +30,7 @@ def login():
         if (num) == -1:
             error = 'Invalid Credentials. Please try again.'
         else:
+            loggedIn = True
             return redirect(url_for('manager'))
     elif request.method == 'POST' and request.form['button'] == 'Register':
         username = request.form['username']
@@ -41,6 +45,9 @@ def login():
 
 @app.route('/manager')
 def manager():
+    global loggedIn
+    if(not loggedIn):
+        return redirect(url_for('login'))
     global masterPass
     error = None
     data=[]
@@ -54,7 +61,6 @@ def manager():
             if item == '':
                 pass
             else:
-
                 if i==0:
                     dict.update({"website":item})
                 elif i==1:

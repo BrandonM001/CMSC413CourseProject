@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<title> Passwords are as follows: </title>
+<table> <tr>
+  <th> Website </th> <th> Username </th> <th> Password </th> </tr>
+{% for item in data %}
+  <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td> </tr>
+{% endfor %}
+{% endblock %}
