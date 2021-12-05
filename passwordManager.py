@@ -5,6 +5,7 @@
 import random
 import re
 from passlib.hash import scrypt
+import cryptocode
 
 masterPass = ""
 
@@ -117,8 +118,8 @@ def readAllFromFile(masterPass):
         data = line.split(",")
         data[2] = decryptPass(data[2], masterPass)
         entries += data[0] + "," + data[1] + "," + str(data[2]) + ",\n"
-    print(entries)
-    return 0
+    #print(entries)
+    return entries
 
 def findFromFile(username):
     file = open("passwords.txt", "r")
@@ -131,14 +132,14 @@ def findFromFile(username):
 
 def main():
     #setupFile("useer", "passwword")
-    print("auth")
-    print(authenticate("useer", "passwword"))
+    #print("auth")
+    #print(authenticate("useer", "passwword"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
     #print(decryptPass(cipher, "plants"))
-    #addToFile("Walmart", "bob", "passz", "pass")
-    #addToFile("Target", "Tom", "reallycool", "paefs")
-    #readAllFromFile("pass")
+    addToFile("Walmart", "bob", "passz", "pass")
+    addToFile("Target", "Tom", "reallycool", "paefs")
+    print(readAllFromFile("pass"))
     #print(checkPassRequirements("kek49282d4321"))
 #J sends seach entry of password file
 
