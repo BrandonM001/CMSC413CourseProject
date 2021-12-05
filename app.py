@@ -50,6 +50,8 @@ def manager():
         return redirect(url_for('login'))
     global masterPass
     error = None
+    if request.method == 'POST' and request.form['button'] == 'Add':
+        addToFile(request.form['website'],request.form['username'],request.form['password'],masterPass)
     data=[]
     lines = readAllFromFile(masterPass).split("\n")
     for line in lines:
@@ -61,6 +63,7 @@ def manager():
             if item == '':
                 pass
             else:
+
                 if i==0:
                     dict.update({"website":item})
                 elif i==1:
@@ -69,8 +72,6 @@ def manager():
                     dict.update({"password":item})
                 i += 1
         data.append(dict)
-
-
     return render_template('manager.html',error=error,data=data)
 
 @app.route('/')
