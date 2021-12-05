@@ -133,15 +133,15 @@ def findFromFile(username):
     return 0
 
 def main():
-    #setupFile("useer", "passs")
+    setupFile("useer", "passs1256")
     #print("auth")
     #print(authenticate("useer", "passs"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
     #print(decryptPass(cipher, "plants"))
-    #addToFile("Walmart", "bob", "passz", "passs")
-    #addToFile("Target", "Tom", "reallycool", "passs")
-    print(readAllFromFile("passs"))
+    addToFile("Walmart", "bob", "passz", "passs1256")
+    addToFile("Target", "Tom", "reallycool", "passs1256")
+    print(readAllFromFile("passs1256"))
     #print(checkPassRequirements("kek49282d4321"))
 #J sends seach entry of password file
 
