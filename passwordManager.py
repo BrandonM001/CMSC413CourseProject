@@ -105,6 +105,29 @@ def wipeAllPasswords():
     file.write(creds)#doesn't delete passwords, fix later
     file.close()
 
+def removeLine(website, username):
+    file = open("passwords.txt", "r")
+    lines = file.readlines()
+    bool = ""
+    fileWrite = open("passwords.txt", "w")
+    fileWrite.write(lines[0])
+    for line in lines[1:]:
+        #line = line.strip("\n")
+        #print("line: " + line)
+        data = line.split(",")
+        if(data[0] != website and data[1] != username):
+            fileWrite.write(line)
+        else:
+            bool += line
+
+    file.close()
+    fileWrite.close()
+    #compareLines = file.readlines()
+    return bool
+
+
+
+
 def ReplaceInFile(username, password):
     return 0
 
@@ -133,15 +156,16 @@ def findFromFile(username):
     return 0
 
 def main():
-    setupFile("useer", "passs1256")
+    #setupFile("useer", "passs1256")
     #print("auth")
     #print(authenticate("useer", "passs"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
     #print(decryptPass(cipher, "plants"))
-    addToFile("Walmart", "bob", "passz", "passs1256")
-    addToFile("Target", "Tom", "reallycool", "passs1256")
-    print(readAllFromFile("passs1256"))
+    #addToFile("Walmart", "bob", "passz", "passs1256")
+    #addToFile("Target", "Tom", "reallycool", "passs1256")
+    #print(readAllFromFile("passs1256"))
+    print(removeLine("Target", "Tom"))
     #print(checkPassRequirements("kek49282d4321"))
 #J sends seach entry of password file
 
