@@ -18,6 +18,13 @@ def setupFile(user, password):
     saltedHashPass = hashPass + str(salt)
     line = str(user) + "," + str(saltedHashPass) +"\n"
     masterPass = password
+
+    print(password)
+    print(salt)
+    print(saltedPass)
+    print(hashPass)
+    print(saltedHashPass)
+
     file.write(line)
     file.close()
 
@@ -26,12 +33,17 @@ def authenticate(username, password):
     file = open("passwords.txt", "r")
     creds = file.readline().split(",")
     file.close()
-    grabPass = (creds[1])[0:-1]
-    #print(grabPass)
+    grabPass = creds[1].strip() #(creds[1])[0:-1]
     salt = (grabPass)[-4:]
     saltedPass = password + str(salt)
     hashPass = str(hash(saltedPass))
     saltedHashPass = hashPass + str(salt)
+    print(grabPass)
+    print(password)
+    print(salt)
+    print(saltedPass)
+    print(hashPass)
+    print(saltedHashPass)
     if((creds[0] == username) and (grabPass == saltedHashPass)):
         masterPass = password
         return 1
@@ -116,16 +128,16 @@ def findFromFile(username):
             return creds[0]
     return 0
 
-def main(user, password):
-    setupFile(user, password)
-    #print(authenticate("user", "pass"))
+def main():
+    #setupFile("user", "password")
+    print(authenticate("user", "password"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
     #print(decryptPass(cipher, "plants"))
     #addToFile("Walmart", "bob", "passz", "pass")
     #addToFile("Target", "Tom", "reallycool", "paefs")
     #readAllFromFile("pass")
-    print(checkPassRequirements("kek49282d4321"))
+    #print(checkPassRequirements("kek49282d4321"))
 #J sends seach entry of password file
 
 if __name__ == "__main__":
