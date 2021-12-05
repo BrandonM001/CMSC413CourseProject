@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from passwordManager import *
+from passlib.hash import pbkdf2_sha256
 
 app = Flask(__name__)
 masterPass = "_"

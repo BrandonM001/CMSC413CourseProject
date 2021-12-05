@@ -4,7 +4,7 @@
 
 import random
 import re
-import cryptocode
+from passlib.hash import scrypt
 
 masterPass = ""
 
@@ -14,16 +14,16 @@ def setupFile(user, password):
     #assume user/password meets requirements cause Jared checks them
     salt = random.randint(1000,9999)
     saltedPass = password + str(salt)
-    hashPass = str(hash(saltedPass))
+    hashPass = scrypt.hash(saltedPass)#str(hash(saltedPass))
     saltedHashPass = hashPass + str(salt)
-    line = str(user) + "," + str(saltedHashPass) +"\n"
+    line = str(user) + "|" + str(saltedHashPass) +"\n"
     masterPass = password
 
-    print(password)
-    print(salt)
-    print(saltedPass)
-    print(hashPass)
-    print(saltedHashPass)
+    #print(password)
+    #print(salt)
+    #print(saltedPass)
+    #print(hashPass)
+    #print(saltedHashPass)
 
     file.write(line)
     file.close()
@@ -31,20 +31,21 @@ def setupFile(user, password):
 def authenticate(username, password):
     #grab hashes from file and check
     file = open("passwords.txt", "r")
-    creds = file.readline().split(",")
+    creds = file.readline().split("|")
     file.close()
-    grabPass = creds[1].strip() #(creds[1])[0:-1]
+    grabPass = "".join(creds[1]).strip() #creds[0].strip() #(creds[1])[0:-1]
     salt = (grabPass)[-4:]
     saltedPass = password + str(salt)
-    hashPass = str(hash(saltedPass))
-    saltedHashPass = hashPass + str(salt)
-    print(grabPass)
-    print(password)
-    print(salt)
-    print(saltedPass)
-    print(hashPass)
-    print(saltedHashPass)
-    if((creds[0] == username) and (grabPass == saltedHashPass)):
+    passHash = grabPass[0:-4]
+    #hashPass = str(scrypt.hash(saltedPass))
+    #saltedHashPass = hashPass[2] + str(salt)
+    #print(grabPass)
+    #print(password)
+    #print(salt)
+    #print(saltedPass)
+    #print(hashPass)
+    #print(saltedHashPass)
+    if((creds[0] == username) and (scrypt.verify(saltedPass, passHash))):#grabPass == saltedHashPass)):
         masterPass = password
         return 1
     return -1
@@ -129,8 +130,9 @@ def findFromFile(username):
     return 0
 
 def main():
-    #setupFile("user", "password")
-    print(authenticate("user", "password"))
+    #setupFile("useer", "passwword")
+    print("auth")
+    print(authenticate("useer", "passwword"))
     #cipher = encryptPass("dumb", "plants")
     #print(cipher)
     #print(decryptPass(cipher, "plants"))
