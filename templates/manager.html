@@ -1,60 +1,26 @@
+<link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
+<!--<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">-->
+
 {% extends 'layout.html' %}
 {% block body %}
-<style>
 
-body {
-  background-color: lightgray;
-  align-content: center;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: white;
-  border: 12px solid #black;
-}
-
-
-td {
-  /*border: 12px solid #black;*/
-  text-align: center;
-  padding: 18px;
-}
-
-th {
-  /*border: 12px solid #black;*/
-  text-align: center;
-  background-color: black;
-  color: white;
-}
-
-tr:nth-child(even) {
-  background-color: lightgray;
-}
-
-
-
-</style>
 <title class = "passwordList"> Passwords are as follows: </title>
 <table> <tr>
   <th> Website </th> <th> Username </th> <th> Password </th> </tr>
 {% for item in data %}
-  <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td> 
+  <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td>
     <td><form action="" method="post">
-      <input class="btn btn-default" type="submit" name="button" value=Delete{{item.index}}>
+      <input class="btn btn-default" type="submit" name="button" value=Delete{{item.index}}></input>
     </form></td>
   </tr>
 {% endfor %}
  <form action="" method="post">
   <input type="text" placeholder="Website" name="website" value="{{
-    request.form.website }}">
+    request.form.website }}"></input>
   <input type="text" placeholder="Username" name="username" value="{{
-    request.form.username }}">
+    request.form.username }}"></input>
    <input type="password" placeholder="Password" name="password" value="{{
-    request.form.password }}">
-  <input class="btn btn-default" type="submit" name="button" value="Add">
+    request.form.password }}"></input>
+  <input class="btn btn-default" type="submit" name="button" value="Add"></input>
 </form>
 {% endblock %}
