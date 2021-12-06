@@ -1,0 +1,38 @@
+
+body {
+  background-color: lightgray;
+  align-content: center;
+  text-align: center;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border: 12px solid #black;
+}
+
+td {
+  /*border: 12px solid #black;*/
+  padding: 18px;
+}
+
+th {
+  /*border: 12px solid #black;*/
+  background-color: black;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: lightgray;
+}
+
+input:nth-child(4) {
+  color:red;
+}
+input:hover {
+  background-color: red;
+}

@@ -1,12 +1,13 @@
-<link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
-<!--<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">-->
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<!--<link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
+<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">-->
 
 {% extends 'layout.html' %}
 {% block body %}
 
 <title class = "passwordList"> Passwords are as follows: </title>
 <table> <tr>
-  <th> Website </th> <th> Username </th> <th> Password </th> </tr>
+  <th> Website </th> <th> Username </th> <th> Password </th> <th> </th></tr>
 {% for item in data %}
   <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td>
     <td><form action="" method="post">

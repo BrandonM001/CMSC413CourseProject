@@ -106,6 +106,8 @@ def wipeAllPasswords():
     file.close()
 
 def removeLine(website, username):
+    print(website)
+    print(username)
     file = open("passwords.txt", "r")
     lines = file.readlines()
     bool = ""
@@ -115,7 +117,9 @@ def removeLine(website, username):
         #line = line.strip("\n")
         #print("line: " + line)
         data = line.split(",")
-        if(data[0] != website and data[1] != username):
+        print(data[0])
+        print(data[1])
+        if(data[0] != website or data[1] != username):
             fileWrite.write(line)
         else:
             bool += line

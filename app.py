@@ -60,6 +60,7 @@ def manager():
             entryToDelete = lines[i].split(",")
             removeLine(entryToDelete[0],entryToDelete[1])
             lines = readAllFromFile(masterPass).split("\n")
+            length = len(lines)
     index = 0
     for line in lines:
         items = line.split(",")
