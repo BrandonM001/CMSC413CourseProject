@@ -54,6 +54,13 @@ def manager():
         addToFile(request.form['website'],request.form['username'],request.form['password'],masterPass)
     data=[]
     lines = readAllFromFile(masterPass).split("\n")
+    length = len(lines)
+    for i in range(length):
+        if request.method == 'POST' and request.form['button'] == 'Delete'+str(i):
+            entryToDelete = lines[i].split(",")
+            removeLine(entryToDelete[0],entryToDelete[1])
+            lines = readAllFromFile(masterPass).split("\n")
+    index = 0
     for line in lines:
         items = line.split(",")
         i = 0
@@ -71,6 +78,8 @@ def manager():
                 elif i==2:
                     dict.update({"password":item})
                 i += 1
+        dict.update({"index":str(index)})
+        index+=1
         data.append(dict)
     return render_template('manager.html',error=error,data=data)
 
