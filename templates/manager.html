@@ -42,7 +42,11 @@ tr:nth-child(even) {
 <table> <tr>
   <th> Website </th> <th> Username </th> <th> Password </th> </tr>
 {% for item in data %}
-  <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td> </tr>
+  <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td> 
+    <td><form action="" method="post">
+      <input class="btn btn-default" type="submit" name="button" value=Delete{{item.index}}>
+    </form></td>
+  </tr>
 {% endfor %}
  <form action="" method="post">
   <input type="text" placeholder="Website" name="website" value="{{
