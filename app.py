@@ -81,6 +81,7 @@ def manager():
         dict.update({"index":str(index)})
         index+=1
         data.append(dict)
+    del data[length-1]
     return render_template('manager.html',error=error,data=data)
 
 @app.route('/')
