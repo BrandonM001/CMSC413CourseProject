@@ -2,21 +2,40 @@
 {% block body %}
 <style>
 
+body {
+  background-color: lightgray;
+  align-content: center;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border: 12px solid #black;
 }
 
-td, th {
-  border: 1px solid #dddddd;
+
+td {
+  /*border: 12px solid #black;*/
   text-align: center;
-  padding: 8px;
+  padding: 18px;
+}
+
+th {
+  /*border: 12px solid #black;*/
+  text-align: center;
+  background-color: black;
+  color: white;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: lightgray;
 }
+
+
 
 </style>
 <title class = "passwordList"> Passwords are as follows: </title>

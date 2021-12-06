@@ -125,9 +125,6 @@ def removeLine(website, username):
     #compareLines = file.readlines()
     return bool
 
-
-
-
 def ReplaceInFile(username, password):
     return 0
 
