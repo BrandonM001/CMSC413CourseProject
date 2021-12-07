@@ -51,12 +51,13 @@ def manager():
     global masterPass
     error = None
     if request.method == 'POST' and request.form['button'] == 'Add':
-        addToFile(request.form['website'],request.form['username'],request.form['password'],masterPass)
+        if(len(request.form['website'].strip("\n")) > 0 and len(request.form['username'].strip("\n")) > 0 and len(request.form['password'].strip("\n")) > 0):
+            addToFile(request.form['website'],request.form['username'],request.form['password'],masterPass)
     data=[]
     lines = readAllFromFile(masterPass).split("\n")
     length = len(lines)
     for i in range(length):
-        if request.method == 'POST' and request.form['button'] == 'Delete'+str(i):
+        if request.method == 'POST' and request.form['button'] == 'DeleteEntry#'+str(i):
             entryToDelete = lines[i].split(",")
             removeLine(entryToDelete[0],entryToDelete[1])
             lines = readAllFromFile(masterPass).split("\n")

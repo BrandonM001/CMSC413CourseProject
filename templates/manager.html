@@ -11,11 +11,11 @@
 {% for item in data %}
   <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td>
     <td><form action="" method="post">
-      <input class="btn btn-default" type="submit" name="button" value=Delete{{item.index}}></input>
+      <input class="btn btn-default" type="submit" name="button" value=DeleteEntry#{{item.index}}></input>
     </form></td>
   </tr>
 {% endfor %}
- <form action="" method="post">
+ <form action="" method="post" class="adding">
   <input type="text" placeholder="Website" name="website" value="{{
     request.form.website }}"></input>
   <input type="text" placeholder="Username" name="username" value="{{
