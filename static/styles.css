@@ -32,7 +32,7 @@ tr:nth-child(even) {
 }
 
 input:nth-child(4) {
-  color:red;
+  color:green;
 }
 input.btn {
   color: white;
@@ -41,13 +41,23 @@ input.btn {
 
 input {
   align-content: center;
-
+  margin: auto;
 }
 
 input.adding {
   align-content: center;
   background-color: yellow;
 }
+
+table:nth-child(3) {
+  text-decoration: none;
+  color: transparent;
+}
+
+input:nth-child(3):hover {
+  color: white;
+}
+
 /*input:hover {
   background-color: red;
 }*/

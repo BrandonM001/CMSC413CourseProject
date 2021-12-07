@@ -9,7 +9,7 @@
 <table> <tr>
   <th> Website </th> <th> Username </th> <th> Password </th> <th> </th></tr>
 {% for item in data %}
-  <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> {{item.password}} </td>
+  <tr> <td> {{item.website}} </td> <td> {{item.username}} </td> <td> <p class = "sensitive">{{item.password}} </td>
     <td><form action="" method="post">
       <input class="btn btn-default" type="submit" name="button" value=DeleteEntry#{{item.index}}></input>
     </form></td>
