@@ -38,6 +38,10 @@ input.btn {
   color: white;
   background-color: darkred;
 }
+input.btn:hover {
+  color: black;
+  background-color: red;
+}
 
 input {
   align-content: center;
@@ -54,9 +58,9 @@ table:nth-child(3) {
   color: transparent;
 }
 
-input:nth-child(3):hover {
+/*input:nth-child(3):hover {
   color: white;
-}
+}*/
 
 /*input:hover {
   background-color: red;
